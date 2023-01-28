@@ -1,0 +1,36 @@
+﻿@using ProjectMambaExam.DTOs.CardDTOs
+@model List<CardGetDto>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="col-sm-12 col-xl-6 m-4">
+    <div class="bg-secondary rounded h-100 p-4">
+        <h6 class="mb-4">Hoverable Table<a asp-controller="Card" asp-action="Create" type="button" class="btn btn-outline-success m-2" style="float:right">Create</a></h6>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Position</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">CRUD</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <th scope="row">@item.Id</th>
+                        <td>@item.Name</td>
+                        <td>@item.Position</td>
+                        <td><img src="~/assets/img/team/@item.Image" style="height:50px;width:50px"></td>
+                        <td><a asp-controller="Card" asp-action="Update" asp-route-Id="@item.Id" type="button" class="btn btn-outline-warning">Update</a>
+                        <a asp-controller="Card" asp-action="Delete" asp-route-Id="@item.Id" type="button" class="btn btn-outline-danger">Delete</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
